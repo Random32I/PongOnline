@@ -13,6 +13,6 @@ public class Moving : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Spin;
+        
     }
 }
