@@ -12,3 +12,18 @@ D:\GitHub\Pong Online\Server\Server\obj\Debug\net8.0\refint\Server.dll
 D:\GitHub\Pong Online\Server\Server\obj\Debug\net8.0\Server.pdb
 D:\GitHub\Pong Online\Server\Server\obj\Debug\net8.0\Server.genruntimeconfig.cache
 D:\GitHub\Pong Online\Server\Server\obj\Debug\net8.0\ref\Server.dll
+D:\GitHub\PongOnline\Server\Server\bin\Debug\net8.0\Server.exe
+D:\GitHub\PongOnline\Server\Server\bin\Debug\net8.0\Server.deps.json
+D:\GitHub\PongOnline\Server\Server\bin\Debug\net8.0\Server.runtimeconfig.json
+D:\GitHub\PongOnline\Server\Server\bin\Debug\net8.0\Server.dll
+D:\GitHub\PongOnline\Server\Server\bin\Debug\net8.0\Server.pdb
+D:\GitHub\PongOnline\Server\Server\obj\Debug\net8.0\Server.GeneratedMSBuildEditorConfig.editorconfig
+D:\GitHub\PongOnline\Server\Server\obj\Debug\net8.0\Server.AssemblyInfoInputs.cache
+D:\GitHub\PongOnline\Server\Server\obj\Debug\net8.0\Server.AssemblyInfo.cs
+D:\GitHub\PongOnline\Server\Server\obj\Debug\net8.0\Server.csproj.CoreCompileInputs.cache
+D:\GitHub\PongOnline\Server\Server\obj\Debug\net8.0\Server.sourcelink.json
+D:\GitHub\PongOnline\Server\Server\obj\Debug\net8.0\Server.dll
+D:\GitHub\PongOnline\Server\Server\obj\Debug\net8.0\refint\Server.dll
+D:\GitHub\PongOnline\Server\Server\obj\Debug\net8.0\Server.pdb
+D:\GitHub\PongOnline\Server\Server\obj\Debug\net8.0\Server.genruntimeconfig.cache
+D:\GitHub\PongOnline\Server\Server\obj\Debug\net8.0\ref\Server.dll

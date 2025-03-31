@@ -17,6 +17,8 @@ namespace asyncServer
     {
         static float[] ballPos = new float[2];
         static float[] ballDir = new float[2];
+        static float paddle1Dir = 0;
+        static float paddle2Dir = 0;
 
         static IPAddress ip = IPAddress.Parse("127.0.0.1");
 
@@ -72,21 +74,29 @@ namespace asyncServer
                     {
                         //Client Updated
                         failed = true;
-                        if (!paddle1Labeled || !paddle2Labeled)
+                        if (Encoding.ASCII.GetString(inBuffer, 0, recv) == "Game")
                         {
-                            if (paddle1Labeled)
-                            {
-                                paddleIndex = 2;
-                                paddle2Labeled = true;
-                            }
-                            else
-                            {
-                                paddleIndex = 1;
-                                paddle1Labeled = true;
-                            }
-                            outBuffer = Encoding.ASCII.GetBytes($"{newPos},{paddleIndex},{ballPos[0]},{ballPos[1]},{ballDir[0]},{ballDir[1]}");
+                            outBuffer = Encoding.ASCII.GetBytes($"Game");
+                            serverUDP.SendTo(outBuffer, 0, outBuffer.Length, SocketFlags.None, remoteClient);
                         }
-                        serverUDP.SendTo(outBuffer, 0, outBuffer.Length, SocketFlags.None, remoteClient);
+                        else
+                        {
+                            if (!paddle1Labeled || !paddle2Labeled)
+                            {
+                                if (paddle1Labeled)
+                                {
+                                    paddleIndex = 2;
+                                    paddle2Labeled = true;
+                                }
+                                else
+                                {
+                                    paddleIndex = 1;
+                                    paddle1Labeled = true;
+                                }
+                                outBuffer = Encoding.ASCII.GetBytes($"{paddleIndex},{paddle2Labeled}");
+                            }
+                            serverUDP.SendTo(outBuffer, 0, outBuffer.Length, SocketFlags.None, remoteClient);
+                        }
                     }
 
                     if (!failed)
@@ -95,7 +105,7 @@ namespace asyncServer
                         {
                             paddle1Pos = newPos;
 
-                            outBuffer = Encoding.ASCII.GetBytes($"{paddle2Pos},{2},{ballPos[0]},{ballPos[1]},{ballDir[0]},{ballDir[1]}");
+                            outBuffer = Encoding.ASCII.GetBytes($"{paddle2Pos},{2},{ballPos[0]},{ballPos[1]},{ballDir[0]},{ballDir[1]},{paddle2Dir}");
                             serverUDP.SendTo(outBuffer, 0, outBuffer.Length, SocketFlags.None, remoteClient);
                             Console.WriteLine("Sent to 1");
                         }
@@ -103,7 +113,7 @@ namespace asyncServer
                         {
                             paddle2Pos = newPos;
 
-                            outBuffer = Encoding.ASCII.GetBytes($"{paddle1Pos},{1},{ballPos[0]},{ballPos[1]},{ballDir[0]},{ballDir[1]}");
+                            outBuffer = Encoding.ASCII.GetBytes($"{paddle1Pos},{1},{ballPos[0]},{ballPos[1]},{ballDir[0]},{ballDir[1]},{paddle1Dir}");
                             serverUDP.SendTo(outBuffer, 0, outBuffer.Length, SocketFlags.None, remoteClient);
                             Console.WriteLine("Sent to 2");
                         }
@@ -115,7 +125,7 @@ namespace asyncServer
                                 paddle2Labeled = true;
                                 paddle2Pos = newPos;
 
-                                outBuffer = Encoding.ASCII.GetBytes($"{paddle1Pos},{1},{ballPos[0]},{ballPos[1]},{ballDir[0]},{ballDir[1]}");
+                                outBuffer = Encoding.ASCII.GetBytes($"{paddle1Pos},{1},{ballPos[0]},{ballPos[1]},{ballDir[0]},{ballDir[1]},{paddle1Dir}");
                                 serverUDP.SendTo(outBuffer, 0, outBuffer.Length, SocketFlags.None, remoteClient);
                                 Console.WriteLine("Sent to 2");
                             }
@@ -125,7 +135,7 @@ namespace asyncServer
                                 paddle1Labeled = true;
                                 paddle1Pos = newPos;
 
-                                outBuffer = Encoding.ASCII.GetBytes($"{paddle2Pos},{2},{ballPos[0]},{ballPos[1]},{ballDir[0]},{ballDir[1]}");
+                                outBuffer = Encoding.ASCII.GetBytes($"{paddle2Pos},{2},{ballPos[0]},{ballPos[1]},{ballDir[0]},{ballDir[1]},{paddle2Dir}");
                                 serverUDP.SendTo(outBuffer, 0, outBuffer.Length, SocketFlags.None, remoteClient);
                                 Console.WriteLine("Sent to 1");
                             }
@@ -145,7 +155,6 @@ namespace asyncServer
             float pos;
 
             string[] strings = str.Split(',');
-           
 
             pos = float.Parse(strings[0]);
             paddleIndex = int.Parse(strings[1]);
@@ -155,6 +164,8 @@ namespace asyncServer
                 ballPosY = float.Parse(strings[3]);
                 ballDirX = float.Parse(strings[4]);
                 ballDirY = float.Parse(strings[5]);
+
+                paddle2Dir = int.Parse(strings[6]);
             }
             else
             {
@@ -163,6 +174,7 @@ namespace asyncServer
                 ballDirX = ballDir[0];
                 ballDirY = ballDir[1];
 
+                paddle1Dir = int.Parse(strings[6]);
             }
 
 

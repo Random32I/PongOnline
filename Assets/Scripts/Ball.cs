@@ -10,6 +10,7 @@ public class Ball : MonoBehaviour
     [SerializeField] GameManager game;
 
     int hits;
+    bool move = false;
 
     // Start is called before the first frame update
     void Start()
@@ -20,12 +21,15 @@ public class Ball : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (Time.timeSinceLevelLoad >= 3)
+        {
+            move = true;
+        }
     }
 
     private void FixedUpdate()
     {
-        rig.velocity = new Vector3(game.ballXDir, game.ballYDir, 0) * (speed + hits * 0.1f);
+        if (move) rig.velocity = new Vector3(game.ballXDir, game.ballYDir, 0) * speed;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

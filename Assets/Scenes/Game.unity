@@ -872,13 +872,16 @@ MonoBehaviour:
   oppScore: 0
   scoreText: {fileID: 1276040176}
   oppScoreText: {fileID: 1456340527}
+  PlayersText: {fileID: 0}
+  StartButton: {fileID: 0}
   paddles:
   - {fileID: 1567974049}
   - {fileID: 1945003434}
   Ball: {fileID: 2025299913}
+  oppPaddle: {fileID: 1945003439}
+  refToBall: {fileID: 0}
   ballXDir: 1
   ballYDir: -1
-  ClientIndex: 0
   serverBeingUpdated: 0
 --- !u!4 &1514819072
 Transform:
@@ -1471,6 +1474,7 @@ GameObject:
   - component: {fileID: 1945003438}
   - component: {fileID: 1945003437}
   - component: {fileID: 1945003436}
+  - component: {fileID: 1945003439}
   m_Layer: 0
   m_Name: Opp Paddle
   m_TagString: Player
@@ -1590,6 +1594,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &1945003439
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1945003434}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 6
 --- !u!1 &2025299913
 GameObject:
   m_ObjectHideFlags: 0
